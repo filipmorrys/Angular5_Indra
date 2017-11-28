@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Componente Padre</h4>
+  </div>
+  <div class="card-body">
+    <div class="form-group">
+      <label for="">Selecciona tu nombre</label>
+      <input type="text" [(ngModel)]="sNombre"
+        class="form-control" name="nombre" id="nombre" aria-describedby="helpId" placeholder="">
+    </div>
+    <app-hijo [sNombre]="sNombre" class="col" (eRespuesta)="responderHijo($event)"></app-hijo>
+    
+  </div>
+  <div class="card-footer text-muted">
+    Resultado
+  </div>
+</div>
