@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-main',
   template: `
-    <p>
-      main works!
-    </p>
+    <article class="alto"></article>
   `,
-  styles: []
+  styles: [
+    '.alto {min-height: 10rem}'
+  ]
 })
 export class MainComponent implements OnInit {
 
