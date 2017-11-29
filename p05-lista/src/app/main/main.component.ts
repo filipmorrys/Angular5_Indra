@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
     <div class="container0">
     <article class="alto">
       <app-tareas></app-tareas>
+      <app-acumulador></app-acumulador>
     </article>
     </div>
   `,

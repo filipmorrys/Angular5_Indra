@@ -1,0 +1,14 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Acumulador</h4>
+  </div>
+  <div class="card-body">
+
+
+
+  </div>
+  <div class="card-footer text-muted">
+    <p>Total: <span [ngClass]="{positivo : nTotal>=0, negativo : nTotal<0}">{{ nTotal }}</span></p>
+    <button class="btn btn-primary" (click)="inc()">+</button> <button class="btn btn-primary" (click)="dec()">-</button>
+  </div>
+</div>
