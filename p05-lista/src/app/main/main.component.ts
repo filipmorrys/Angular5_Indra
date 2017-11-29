@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
     <article class="alto">
       <app-tareas></app-tareas>
       <app-acumulador></app-acumulador>
+      <app-pipes></app-pipes>
     </article>
     </div>
   `,
