@@ -1,0 +1,105 @@
+<header class="col-12 mb-4">
+    <h3>Formulario Template Driven</h3>
+</header>
+<div class="container"> 
+    <article class="row">
+        <div class="col col-6">
+        <form #formtd="ngForm" (ngSubmit)="enviarDatos()" novalidate>
+            <!--Text-->  
+            <fieldset>
+                <legend>Datos del Usuario</legend>
+                <div class="form-group row">
+                    <!--Etiqueta / Campo "Mombre"-->						
+                    <label for="name" class="col-3">Nombre</label>
+                    <input type="text" class="form-control col-9" 
+                    name="name" id="name" required minlength="3"
+                    placeholder="Indica tu nombre (es obligatorio)"
+                    [(ngModel)]="oUsuario.nombre" #nameState="ngModel" >
+                </div>
+                <div *ngIf="!nameState.valid && nameState.touched" class="error">
+                        <p [hidden]="!nameState.errors?.required">Este campo es requerido</p>
+                        <p [hidden]="!nameState.errors?.minlength">El nombre debe tener al menos 3 caracteres</p>
+                    </div>
+
+                <div class="form-group row">
+                    <!--Etiqueta / Campo "Apellidos"-->
+                    <label for="lastname"  class="col-3">Apellidos</label>
+                    <input type="text" class="form-control col-9"
+                    id="lastname" name="lastname"
+                    placeholder="Indica tu apellido (es obligatorio)"
+                    [(ngModel)]="oUsuario.apellidos">
+                </div>   
+                
+                <div class="form-group row">
+                    <!--Etiqueta / Campo "Telefono"-->
+                    <label for="phoneNumber" class="col-3">Teléfono</label>
+                    <input type="text" class="form-control col-9"
+                    id="phoneNumber" name="phoneNumber"
+                    placeholder="Indica tu teléfono (es obligatorio)"
+                    pattern="^\d{9}" required
+                    [(ngModel)]="oUsuario.telefono" #telefonoState="ngModel"> 
+                </div>
+                <div *ngIf="!telefonoState.valid && telefonoState.touched" class="error">
+                        <p [hidden]="!telefonoState.errors?.required">Este campo es requerido</p>
+                        <p [hidden]="!telefonoState.errors?.pattern">Deben ser 9 digitos numericos</p>
+                    </div>
+            </fieldset>  
+
+            <!--Radio-Buttos-->
+            <fieldset class="form-group">
+                <legend>Selecciona una Impresora</legend>
+                <div class="form-check" *ngFor="let imp of aImpresoras">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input"
+                            name ="{{ imp.nombre }}}" id="{{ imp.id }}}" 
+                            [value]="imp" [(ngModel)]="oImpresora">{{ imp.nombre }}
+                    </label>
+                </div>
+            </fieldset>
+            <!--Checkbox-->   
+            <fieldset class="form-group"> 
+                <legend>Seleción de opciones</legend>
+                <div class="form-check">
+                    <label class="form-check-label">
+                    <input type="checkbox"  class="form-check-input"
+                        id="color" name="color" [(ngModel)]="isColor">
+                        Imprimir en color
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                    <input type="checkbox"  class="form-check-input"
+                        id="tono" name="tono" [(ngModel)]="isClaro"> 
+                        Tono claro</label>			
+                </div>
+            </fieldset>
+            <!--Select/options --> 
+            <fieldset class="form-group"> 
+                <legend>Departameto</legend>
+                <div class="form-group row">
+                    <select class="form-control"
+                        id="select" name="select" [(ngModel)]="oDepartamento"> 
+                        <option *ngFor="let dep of aDepartamentos" [ngValue]="dep">{{dep.nombre}}</option>
+                    </select>
+                </div>
+            </fieldset>
+            <div class="form-group row">
+                <button type="submit" class="btn btn-primary mr-2" [disabled]="formtd.invalid">
+                    Enviar</button>
+                <button type="button" class="btn btn-primary" (click)="borrar()" [disabled]="formtd.pristine" >
+                    Borrar</button>
+            </div>
+        </form>
+        </div>
+        <div class="col"><h4>Resultados</h4>
+            <pre><p>Usuario: {{oUsuario | json}}</p></pre>
+            <p>En color: {{isColor}}</p>
+            <p>En claro: {{isClaro}}</p>
+            <pre><p>Departamento: {{oDepartamento | json}}</p></pre>
+            <pre><p>Impresora: {{oImpresora | json}}</p></pre>
+            <p>Datos de validación: {{formtd.valid}}</p>
+            <p>Uso del formulario: {{formtd.pristine}}</p>
+            <p>Touched: {{formtd.touched}}</p>
+        </div>
+    </article>    
+</div>

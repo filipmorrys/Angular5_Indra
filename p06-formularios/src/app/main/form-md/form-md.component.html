@@ -1,0 +1,94 @@
+<header class="col-12 mb-4">
+    <h3>Formulario Model Driven</h3>
+</header>
+<div class="container">
+    <article class="row">
+        <div class="col col-9">
+            <form class="col-sm-6" [formGroup]="formulario"> 
+                <!--Text-->  
+                <fieldset>
+                    <legend>Datos del Usuario</legend>
+                    <div class="form-group row">
+                        <!--Etiqueta / Campo "Mombre"-->						
+                        <label for="name" class="col-3">Nombre</label>
+                        <input type="text" class="form-control col-9" 
+                        name="name" id="name" 
+                        placeholder="Indica tu nombre (es obligatorio)"
+                        formControlName="name">
+                    </div>
+
+                    <div class="form-group row">
+                        <!--Etiqueta / Campo "Apellidos"-->
+                        <label for="lastname"  class="col-3">Apellidos</label>
+                        <input type="text" class="form-control col-9"
+                        id="lastname" name="lastname" 
+                        placeholder="Indica tu apellido (es obligatorio)"
+                        formControlName="lastname">
+                    </div>      
+                    <div class="form-group row">
+                        <!--Etiqueta / Campo "Telefono"-->
+                        <label for="phoneNumber" class="col-3">Teléfono</label>
+                        <input type="text" class="form-control col-9"
+                        id="phoneNumber" name="phoneNumber"
+                        placeholder="Indica tu teléfono (es obligatorio)"
+                        formControlName="phoneNumber"> 
+                    </div>
+                </fieldset>  
+
+                <!--Radio-Buttos-->
+                <fieldset class="form-group">
+                    <legend>Selecciona una Impresora</legend>
+                    <div class="form-check" *ngFor="let imp of aImpresoras">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input"
+                                name ="impresora" id="{{ imp.id }}}" 
+                                [value]="imp"
+                                formControlName="impresora">{{ imp.nombre }}
+                        </label>
+                    </div>
+                </fieldset>
+                <!--Checkbox-->   
+                <fieldset class="form-group"> 
+                    <legend>Seleción de opciones</legend>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                        <input type="checkbox"  class="form-check-input"
+                            id="color" name="isColor"
+                            formControlName="isColor">
+                            Imprimir en color
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                        <input type="checkbox"  class="form-check-input"
+                            id="tono" name="isClaro"
+                            formControlName="isClaro"> 
+                            Tono claro</label>			
+                    </div>
+                </fieldset>
+                <!--Select/options --> 
+                <fieldset class="form-group"> 
+                    <legend>Departameto</legend>
+                    <div class="form-group row">
+                        <select class="form-control"
+                            id="select" name="departamento"
+                            formControlName="departamento"> 
+                            <option *ngFor="let dep of aDepartamentos" [ngValue]="dep">{{dep.nombre}}</option>
+                        </select>
+                    </div>
+                </fieldset>
+                <div class="form-group row">
+                    <button type="submit" class="btn btn-primary mr-2">
+                            Enviar</button>
+                    <button type="button" class="btn btn-primary">
+                        Borrar</button>
+                </div>
+            </form>
+
+        </div>
+        <div class="col"><h4>Resultados</h4>
+            <pre><p>Formulario: {{formulario.value |json}}</p></pre>
+        
+        </div>
+    </article>
+</div>
