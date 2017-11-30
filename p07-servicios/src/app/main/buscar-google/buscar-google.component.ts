@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-//import { Http } from '@angular/http';
+// import { Http } from '@angular/http';
 
 
 const GOOGLE_URL = 'https://www.googleapis.com/books/v1/volumes?q=intitle:';

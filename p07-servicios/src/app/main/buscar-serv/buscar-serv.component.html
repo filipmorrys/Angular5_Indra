@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-header">
+    <h3>Buscar en google mediante servicio</h3>
+  </div>
+  <div class="card-body">
+    <div class="form-group">
+      <label for="nombre">Escribe la clave de busqueda</label>
+      <input type="text" [(ngModel)]="sClave" 
+        class="form-control" name="nombre" id="nombre" placeholder="">
+    </div>
+    <button class="btn btn-primary" (click)="btnBuscarServ()" >Buscar</button>
+
+  </div>
+  <div class="card-footer text-muted">
+    <p>Resultado:</p>
+    <ul class="list-group" *ngIf="aLibros.length">
+      <li class="list-group-item" *ngFor="let libro of aLibros">{{libro}}}</li>
+
+    </ul>
+  </div>
+</div>
